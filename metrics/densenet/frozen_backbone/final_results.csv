@@ -1,0 +1,2 @@
+test_loss,test_accuracy,macro_auc,class_0_auc,class_1_auc,class_2_auc,class_3_auc,class_4_auc,class_5_auc,class_6_auc,class_7_auc,class_8_auc,class_9_auc,class_10_auc,class_11_auc,class_12_auc,class_13_auc
+0.2317,0.9236,0.6981,0.6556,0.7010,0.7108,0.6507,0.6483,0.6585,0.6180,0.7286,0.6793,0.7762,0.7200,0.7524,0.6761,0.7982
