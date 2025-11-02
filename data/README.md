@@ -23,7 +23,7 @@ data/
 ## 🔗 Download Processed Dataset
 
 Processed dataset (ready to train):  
-👉 **Google Drive:** [processed_dataset.zip folder](https://drive.google.com/drive/folders/1HLOxnhiwPN7Pj3-XISS6Co4JjtBhyrTD)
+👉 **Google Drive:** [processed_dataset.zip](https://drive.google.com/file/d/1dYfJ4zbqITdz_9inL4bWBHwqrquUV33s/view?usp=sharing)
 
 After downloading:
 
