@@ -9,8 +9,8 @@ To keep the repository lightweight, model weights are hosted on Google Drive ins
 
 | Architecture | Setting         | Download Link              | Filename Example             |
 | ------------ | --------------- | -------------------------- | ---------------------------- |
-| ResNet50     | Frozen Backbone | [Download](YOUR_LINK_HERE) | `resnet_frozen.pt`      |
-| ResNet50     | Fine-Tuned      | [Download](YOUR_LINK_HERE) | `resnet_finetuned.pt`   |
+| ResNet50     | Frozen Backbone | [Download](https://drive.google.com/file/d/1ez4II56Bg_pvLEPmUcdUP6vjN8ahPxZW/view?usp=sharing) | `resnet_frozen.pt`      |
+| ResNet50     | Fine-Tuned      | [Download](https://drive.google.com/file/d/1Jx_e9D4jEK4JbZpXe1cm_asF1SgvxNoO/view?usp=sharing) | `resnet_finetuned.pt`   |
 | DenseNet121  | Frozen Backbone | [Download](https://drive.google.com/file/d/1hZq1SGmrL9Ukz8_wRwu7ta55UBkvwzYK/view?usp=sharing) | `densenet_frozen.pt`    |
 | DenseNet121  | Fine-Tuned      | [Download](https://drive.google.com/file/d/1pxsuY1yICfYDgCTCVizx8q0tDX7t52PM/view?usp=sharing) | `densenet_finetuned.pt` |
 
