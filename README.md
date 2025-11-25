@@ -1,81 +1,99 @@
 # Transfer Learning for Chest X-ray Disease Classification
 
-> ⚠️ **TENTATIVE**
-> All details below (dataset, preprocessing, experiments, setup, results, reproducibility, references, contributors) are tentative.
+This project evaluates **Frozen Backbone** vs **Fine-Tuning** strategies for multi-label chest X-ray disease classification using **ResNet50** and **DenseNet121**.  
+Dataset used: **NIH ChestX-ray14**.
 
 ---
 
-## 🩺 Project Summary
+## Project Summary
 
-This repository compares **Frozen Backbone** vs **Fine-Tuning** strategies for multi-label chest disease classification using **ResNet50** and **DenseNet121** on the **NIH ChestX-ray14** dataset.
+We compare how freezing the pretrained backbone vs fine-tuning it affects performance, training cost, and generalization.  
+Models evaluated:
 
----
+- **ResNet50 (Frozen)**
+- **ResNet50 (Fine-Tuned)**
+- **DenseNet121 (Frozen)**
+- **DenseNet121 (Fine-Tuned)**
 
-## 🎯 Objective
+Main metric: **AUROC (macro + per-class)**.
 
-Compare performance and tradeoffs between:
-
-* Training only the final classifier layers on pretrained backbones (**Frozen Backbone**)
-* Unfreezing and fine-tuning pretrained backbone weights (**Fine-Tuning**)
-
-**Models Used**
-
-* ResNet50 (pretrained on ImageNet)
-* DenseNet121 (pretrained on ImageNet)
-
-**Task:** Multi-label classification for 14 thoracic diseases in the NIH ChestX-ray14 dataset.
+All experiments follow a consistent training pipeline for fair comparison.
 
 ---
 
-## 📁 Dataset (TENTATIVE)
+## Dataset
 
-* **Source:** NIH ChestX-ray14 (~112,000 frontal chest X-rays).
-* **Original image size:** 1024 × 1024 (grayscale)
-* **Preprocessing plan:**
+- **NIH ChestX-ray14**, ~112k frontal chest X-rays  
+- **14 disease labels** (multi-label)  
+- Images resized to **224×224**, converted to **3-channel RGB**, normalized with ImageNet stats  
+- Train/val/test split stored after preprocessing  
 
-  * Resize to **224 × 224** (or 256 → center crop to 224)
-  * Convert grayscale → 3-channel RGB (repeat same channel)
-  * Normalize with ImageNet mean and std
-  * Tentative split: 70% train / 15% validation / 15% test
-  * Optionally use a smaller subset for faster experiments (document final subset used)
+> **Dataset note:** To avoid re-running preprocessing locally, the project uses a preprocessed dataset stored on Google Drive. Download `processed_dataset.zip` and extract it to `data/processed/` to obtain the train/val/test folders and label files required by the notebooks. The processed dataset is **not** tracked in this repository (large files); see [`data/README.md`](./data/README.md) for details and the download link.
 
 ---
 
-## 🧹 Preprocessing Notes
+## Setup
 
-* Pretrained CNNs (ResNet, DenseNet) expect **3-channel 224×224 inputs**.
-* Preprocessing (resizing, conversion, normalization) is performed **once** and saved to a smaller processed dataset.
-* The original NIH dataset (~45GB) can be reduced significantly after resizing and optional subsetting.
-
----
-
-## 🧪 Planned Experiments
-
-1. **ResNet50 – Frozen Backbone**
-2. **ResNet50 – Fine-Tuned**
-3. **DenseNet121 – Frozen Backbone**
-4. **DenseNet121 – Fine-Tuned**
-
-**Possible extensions (optional):**
-
-* Partial fine-tuning (last N blocks)
-* Data augmentation effects
-* Different learning rates for backbone vs head
+```bash
+pip install -r requirements.txt
+```
 
 ---
 
-## 📊 Evaluation Metrics
+## Experiments
 
-* AUROC (per class + macro average) — **primary metric**
-* F1-score (per class + macro average)
-* Accuracy (less relevant for imbalanced multi-label tasks)
-* Training time, GPU usage, and parameter count (for resource comparison)
+Run **all four training notebooks**
+
+- `resnet_frozen.ipynb`
+- `resnet_finetuned.ipynb`
+- `densenet_frozen.ipynb`
+- `densenet_finetuned.ipynb`
+
+Each notebook saves:
+
+- model weights
+- metrics CSVs
+
+These saved metrics are required for the visualization notebook.
 
 ---
 
-## 🏫 Course
+## Visualizations and Plots
+
+All plots are generated in:  
+📁 **`notebooks/result_plots.ipynb`**
+
+Includes:
+
+- Training curves
+- Macro ROC curve
+- Per-class AUROC bar plots
+- Per-class AUROC heatmap
+
+---
+
+## Final Results
+
+### Final Results (after training)
+
+| Model | Frozen / FT | Macro AUROC |
+|--------------|---------------|-------------|
+| ResNet50 | Frozen | 0.6946 |
+| ResNet50 | Fine-Tuned | 0.7801 |
+| DenseNet121 | Frozen | 0.6981 |
+| DenseNet121 | Fine-Tuned | 0.7882 |
+
+---
+
+## References
+
+1. NIH ChestX-ray14 dataset paper: Wang, Xiaosong, et al. ''ChestX-ray8: Hospital-scale Chest X-ray Database and Benchmarks on Weakly-Supervised Classification and Localization of Common Thorax Diseases''.
+
+---
+
+## Course
 
 **Foundations of Machine Learning (CS725)**
-M.Tech CSE, IIT Bombay — Oct 2025 *(Tentative project)*
+M.Tech CSE, IIT Bombay — Oct 2025
 
 ---
